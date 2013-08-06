@@ -3,13 +3,11 @@ require "spec/config/helper"
 describe Fluentd::Config::Parser do
   include_context 'config_helper'
 
-  TestContext = Struct.new(:v1, :v2, :v3)
-
   let(:v1) { 'test' }
   let(:v2) { true }
   let(:v3) { nil }
 
-  let(:eval_context) { TestContext.new(v1, v2, v3) }
+  let(:eval_context) { Struct.new(:v1, :v2, :v3).new(v1, v2, v3) }
 
   def parse_text(text)
     basepath = File.expand_path(File.dirname(__FILE__)+'/../../')
